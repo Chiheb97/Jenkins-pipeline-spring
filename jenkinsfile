@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('get project from github') {
+            steps {
+               sh 'gh repo clone Chiheb97/Jenkins-pipeline-spring'
+            }
+        }
+        stage('build') {
+            steps {
+                sh 'mvn install'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'mvn clean test'
+            }
+        }
+    }
+}
